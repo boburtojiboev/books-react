@@ -1,0 +1,550 @@
+.format.home_navbar {
+  width: 100%;
+  height: 90px;
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #333333bd;
+  color: #fff;
+  padding: 10px;
+  z-index: 999;
+  align-items: center;
+}
+.msg_box {
+  width: 90px;
+  height: 90px;
+  position: fixed;
+  z-index: 998;
+  top: 80%;
+  left: 92%;
+  display: flex;
+  justify-content: center;
+  /* background-color: #d7b686; */
+}
+
+.format.home_navbar .navbar_config {
+  width: 1244.69px;
+  height: 46px;
+  margin-left: 10px;
+  margin-top: 10px;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.home_navbar .navbar_links {
+  width: 70%;
+  height: 46px;
+}
+
+.home_navbar a {
+  text-decoration: none;
+  font-size: 18px;
+  transition: ease;
+}
+
+.home_navbar .hover-line a {
+  color: #ffffff;
+  font-family: Poppins;
+}
+/* .home_navbar .hover-line a:hover{
+  color: #090801;
+} */
+
+.home_navbar .underline {
+  display: block;
+  content: "";
+  font-weight: bold;
+  /* font-style: italic; */
+  /* border-bottom: solid 1.5px #e3cb8e; */
+}
+
+.home_navbar .help{
+margin-right: 50px;
+}
+
+.home_navbar .hover-line:after {
+  display: block;
+
+  content: "";
+  border-bottom: solid 1.5px #000000;
+  transform: scaleX(0);
+  transition: transform 250ms ease-in-out;
+}
+.home_navbar .hover-line:hover:after {
+  transform: scaleX(1);
+}
+
+.basket_box {
+  margin-left: 50px;
+}
+
+.head_information1 {
+  width: 100%;
+  height: 570px;
+  /* background: url("/public/shops/1.png"); */
+  background-size: cover;
+  display: flex;
+  position: relative;
+  flex-direction: row;
+}
+.head_information2 {
+  width: 100%;
+  height: 570px;
+  /* background: url("/public/shops/2.png"); */
+  background-size: cover;
+  display: flex;
+  position: relative;
+  flex-direction: row;
+}
+.head_information3 {
+  width: 100%;
+  height: 570px;
+  /* background: url("/public/shops/3.webp"); */
+  background-size: cover;
+  display: flex;
+  position: relative;
+  flex-direction: row;
+}
+
+.head_information4 {
+  width: 100%;
+  height: 570px;
+  /* background: url("/public/shops/4.png"); */
+  background-size: cover;
+  display: flex;
+  position: relative;
+  flex-direction: row;
+}
+
+.head_information5 {
+  width: 100%;
+  height: 570px;
+  /* background: url("/public/shops/6.webp"); */
+  background-size: cover;
+  display: flex;
+  position: relative;
+  flex-direction: row;
+}
+
+.box_head {
+  width: 800px;
+  height: 350px;
+  margin-left: 255px;
+  margin-top: 160px;
+  background-color: #0d09095d;
+}
+.box_head:hover {
+  border: 1px solid red;
+}
+
+.head_title {
+  width: 700px;
+  height: 50px;
+  font-size: 50px;
+  font-family: "Rubik", sans-serif;
+  color: #ffffff;
+  font-weight: 500;
+  margin-left: 40px;
+}
+.head_text {
+  width: 670px;
+  height: 60px;
+  font-family: "Rubik", sans-serif Impact, Haettenschweiler, "Arial Narrow Bold",
+    sans-serif;
+  font-size: 22px;
+  color: #ffffff;
+  font-weight: 400;
+  margin-left: 40px;
+}
+
+.info_store {
+  margin-top: 30px;
+  margin-left: 40px;
+  width: 270px;
+  height: 65px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgb(128, 128, 128);
+  font-size: 30px;
+  color: #f1dede;
+  background-color: rgba(58, 57, 57, 0.593);
+}
+.info_store:hover {
+  background-color: rgba(0, 0, 0, 0.588);
+  border: 1px solid black;
+}
+.info_store:active {
+  border: 1px solid rgb(255, 255, 255);
+}
+
+.shop_information {
+  width: 100%;
+  height: 400px;
+  background: url("/public/img/book.jpg");
+  background-size: cover;
+  justify-content: center;
+  align-items: center;
+  bottom: 30px;
+}
+
+.others_information {
+  width: 100%;
+  height: 400px;
+  background: url("/public/img/book1.jpg");
+  background-color: #d7b686;
+  background-size: cover;
+  justify-content: center;
+  align-items: center;
+}
+
+.chat_frame {
+  width: 300px;
+  height: 500px;
+
+  display: flex;
+  flex-direction: column;
+  background: #d0deeb;
+  border: 1px solid #ffffff;
+  border-radius: 17px;
+}
+
+.chat_frame .chat_top {
+  width: 100%;
+  height: 70px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid rgba(228, 228, 228, 0.83);
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 54px;
+  color: #000000;
+}
+
+.chat_content {
+  position: relative;
+  padding: 17px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow: hidden;
+}
+
+.chat_content .chat_main {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  font-size: 14px;
+}
+
+.chat_main .msg_left {
+  margin-left: 10px;
+  padding: 9px;
+  width: auto;
+  height: auto;
+  display: flex;
+  background: rgba(228, 228, 228, 0.83);
+  border-radius: 20px 20px 20px 0px;
+}
+
+.msg_right {
+  padding: 9px;
+  width: auto;
+  height: auto;
+  display: flex;
+  background: #d0ece8;
+  border-radius: 20px 20px 0px 20px;
+}
+
+.chat_frame .chat_bott {
+  width: 100%;
+  height: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid rgba(228, 228, 228, 0.83);
+}
+
+.chat_bott .msg_input {
+  padding-left: 20px;
+  width: 200px;
+  height: 45px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #f7f7f7;
+  border-radius: 20px;
+  border: none;
+  outline-color: #257677;
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  /* line-height: 24px; */
+}
+
+.chat_bott .send_msg_btn {
+  margin-left: 5px;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #55a99d 0%, #007665 100%);
+  border: none;
+}
+
+.chat_icon {
+  color: #018094;
+  cursor: pointer;
+}
+.chat_icon:hover {
+  color: #807f35;
+}
+
+/* end */
+
+/* START BASKET*/
+
+.basket_frame {
+  position: relative;
+  padding: 0px 6px 0 6px;
+  width: 450px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border-radius: 16px;
+}
+
+.basket_frame .all_check_box {
+  padding: 0 10px;
+  width: 100%;
+  height: 30px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: #d9d9d9;
+  border-top: 1px solid rgba(0, 0, 0, 0.25);
+  border-left: 1px solid rgba(0, 0, 0, 0.25);
+  border-right: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.basket_frame .basket_info_box {
+  position: relative;
+  margin-top: 6px;
+  width: 100%;
+  height: auto;
+  margin-left: 6px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.basket_info_box .product_image {
+  width: 60px;
+  height: 60px;
+  filter: drop-shadow(0px 0px 0px rgba(0, 0, 0, 0.25));
+  border-radius: 50%;
+}
+
+.basket_info_box .product_name {
+  margin-left: 11px;
+  width: 205px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+  color: #000;
+}
+
+.basket_info_box .product_price {
+  width: 80px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 22px;
+  color: #070404;
+  margin-right: 5px;
+}
+
+.basket_frame .cancel_btn {
+  position: absolute;
+  top: 33%;
+  right: 5%;
+  cursor: pointer;
+}
+.basket_frame .col-2 button {
+  cursor: pointer;
+  margin-right: 5px;
+}
+.basket_frame .to_order_box {
+  /* margin-top: 10px; */
+  width: 100%;
+  height: 64px;
+  background-color: #acb8c4;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  /* border-bottom: 1px solid rgba(0, 0, 0, 0.25); */
+}
+
+.to_order_box .price_text {
+  margin-left: 27px;
+  margin-right: 10px;
+  width: 200px;
+  display: flex;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+  color: #000;
+}
+
+.basket_frame .orders_wrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+
+.basket_frame .orders_main_wrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 260px;
+  /* margin-top: 10px; */
+  background-color: #d0deeb;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+/* END BASKET */
+
+
+/* starting responsive */
+
+@media (max-width: 440px) {
+
+  .format.home_navbar {
+    max-width: 440px;
+    height: auto;
+  }
+  .format.home_navbar .navbar_config {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 0px;
+    margin-top: 0px;
+  }
+  .home_navbar .shoekershop{
+    display: flex;
+    justify-content: center;
+    font-family: "Nunito", sans-serif;
+  }
+
+  .home_navbar .navbar_links {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: auto;
+    width: 100%;
+  }
+
+   .home_navbar .basket{
+    visibility: hidden;
+    max-height: 0;
+    max-width: 0;
+    display: none;
+  }
+
+  .home_navbar .help{
+   margin-right: 0px;
+  }
+
+   .home_navbar .login{
+    visibility: hidden;
+    max-height: 0;
+    max-width: 0;
+    display: none;
+  }
+  .home_navbar .member_img{
+    visibility: hidden;
+    max-height: 0;
+    max-width: 0;
+    display: none;
+  }
+  .home_navbar .member_img{
+    visibility: hidden;
+    max-height: 0;
+    max-width: 0;
+    display: none;
+  }
+
+  .box_head{
+    visibility: hidden;
+    max-height: 0;
+    max-width: 0;
+    display: none;
+  }
+ .shop_information {
+  height: 290px;
+ }
+
+ .others_information {
+  height: 290px;
+ }
+
+ .head_information1{
+  height: 290px;
+ }
+  .head_information2{
+  height: 290px;
+ }
+  .head_information3{
+  height: 290px;
+ }
+  .head_information4{
+  height: 290px;
+ }
+  .head_information5{
+  height: 290px;
+ }
+
+ .msg_box {
+  top: 80%;
+  left: 72%;
+  display: flex;
+  justify-content: center;
+  /* background-color: #d7b686; */
+}
+    
+}
+

@@ -1,0 +1,33 @@
+.homepage .best_product_frame {
+  width: 100%;
+  height: 700px;
+  display: flex;
+  /* background: #8db1d5; */
+}
+.best_product_frame .category_title {
+  font-family: "Roboto";
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 42px;
+  /* color: #e3c08d; */
+}
+.best_product {
+  justify-content: space-between;
+  margin-left: 25px;
+}
+.like_hover {
+    cursor: pointer;
+  z-index: 3;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.img_cart:hover .like_hover {
+  opacity: 1;
+}
+.img_cart{
+  transition: .2s;
+}
+.img_cart:hover{
+  transform: scale(1.1);
+}

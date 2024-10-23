@@ -1,25 +1,23 @@
 import React from "react";
 import { Container } from "@mui/material";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
-import { AllBooks } from "./booklist";
-import { OneBook } from "./oneBook";
 import { NavbarOther } from "../../components/header/others";
-import "../../css/books.css";
-
-
-export function BooksPage() {
+import { ProductCreation } from "./productcreation";
+import { ProductEdit } from "./editproduct";
+function CreatePage() {
   let books = useRouteMatch();
   return (
-    <div className="books_page">
-      <NavbarOther/>
+    <div>
+      <NavbarOther />
       <Switch>
         <Route path={`${books.path}/:book_id`}>
-          <OneBook />
+          <ProductEdit />
         </Route>
         <Route path={`${books.path}`}>
-          <AllBooks />
+          <ProductCreation />
         </Route>
       </Switch>
     </div>
   );
 }
+export default CreatePage;

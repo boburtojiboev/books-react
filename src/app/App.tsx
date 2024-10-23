@@ -1,51 +1,38 @@
 import React from "react";
 import "../css/App.css";
-import { Container,} from "@mui/material";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import BooksPage from "../screens/BooksPage";
-import ContactPage from "../screens/ContactPage";
+import "../css/navbar.css";
+import "../css/footer.css";
+import { BrowserRouter as Router, Switch, Route,} from "react-router-dom";
+import ContactPage from "../screens/CreatePage";
 import HomePage from "../screens/HomePage";
 import { LoginPage } from "../screens/LoginPage";
-
-
+import { Header } from "../components/header/header";
+import { BooksPage } from "../screens/BooksPage";
+import AuthentificationModal from "../components/auth";
+import { Footer } from "../components/footer";
 
 
 function App() {
   return (
     <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/books">Books</Link>
-            </li>
-            <li>
-              <Link to="/contact">Contact</Link>
-            </li>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
-          </ul>
-        </nav>
+      {<Header />}
 
-        <Switch>
-          <Route path="/books">
-            <BooksPage />
-          </Route>
-          <Route path="/contact">
-            <ContactPage />
-          </Route>
-          <Route path="/login">
-            <LoginPage />
-          </Route>
-          <Route path="/">
-            <HomePage />
-          </Route>
-        </Switch>
-      </div>
+      <Switch>
+        <Route path="/books">
+          <BooksPage />
+        </Route>
+        <Route path="/create">
+          <ContactPage />
+        </Route>
+        <Route path="/login">
+          <LoginPage />
+        </Route>
+        <Route path="/">
+          <HomePage />
+        </Route>
+      </Switch>
+      <Footer/>
+      <AuthentificationModal />
     </Router>
   );
 }
