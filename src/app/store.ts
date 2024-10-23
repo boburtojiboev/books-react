@@ -1,9 +1,10 @@
-import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-
+import { configureStore, ThunkAction, Action} from '@reduxjs/toolkit';
+import reduxLogger from 'redux-logger';
 
 export const store = configureStore({
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(reduxLogger),
   reducer: {
-
   },
 });
 
@@ -14,4 +15,4 @@ export type AppThunk<ReturnType = void> = ThunkAction<
   RootState,
   unknown,
   Action<string>
->;
+  >;
