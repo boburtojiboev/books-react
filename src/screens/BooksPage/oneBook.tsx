@@ -1,42 +1,86 @@
-import React, { useState } from "react";
-import { Box, Button, Checkbox, Container, Stack } from "@mui/material";
-import { Close, Home, RemoveRedEye } from "@mui/icons-material";
-import "swiper/css";
-import "swiper/css/free-mode";
-import "swiper/css/navigation";
-import "swiper/css/thumbs";
-import { Favorite, FavoriteBorder } from "@mui/icons-material";
-import ReactImageMagnify from "react-image-magnify";
-import { useHistory } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Box, Button, Container, Stack } from "@mui/material";
+import { useHistory, useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { createSelector } from "reselect";
+import { setChosenProduct } from "./slice";
+import { retrieveChosenProduct } from "./selector";
+import { Product } from "../../types/product";
+import ProductApiService from "../../app/asiService/productApiService";
+import { serverApi } from "../../lib/config";
 
-export function OneBook(props: any) {
+// REDUX SELECTOR
+const chosenProductRetriever = createSelector(
+  retrieveChosenProduct,
+  (chosenProduct) => ({
+    chosenProduct,
+  })
+);
+
+export function OneBook() {
+  // INITIALIZATIONS
   const history = useHistory();
-  const label = { inputProps: { "aria-label": "Checkbox demo" } };
+  const { product_id } = useParams<{ product_id: string }>();
+  const { chosenProduct } = useSelector(chosenProductRetriever);
+  const dispatch = useDispatch(); // Use dispatch from Redux
+  const [productRebuild, setProductRebuild] = useState<Date>(new Date());
+
+  const productRelatedProcess = async () => {
+    try {
+      const productService = new ProductApiService();
+      const product: Product = await productService.getChosenProduct(
+        product_id
+      );
+      dispatch(setChosenProduct(product)); // Dispatch the action to set the chosen product
+    } catch (err) {
+      console.log(`productRelatedProcess ERROR:`, err);
+    }
+  };
+
+  // HANDLERS
+  useEffect(() => {
+    if (product_id) {
+      productRelatedProcess(); // Call the process to fetch product details
+    } else {
+      console.error("Product ID is undefined.");
+    }
+  }, [product_id, productRebuild]);
+
   return (
     <div className="chosen_product_page">
       <Container className="product_container">
-  
+        {chosenProduct?.product_images?.map((ele: string) => {
+          const image_path = `${serverApi}/${ele}`;
+          return (
             <img
-              src="/shops/sneakers.jpg"
+              key={ele}
+              src={image_path}
               className="img_selected"
               alt="product"
             />
+          );
+        })}
 
         <Stack className="chosen_product_info_container">
           <Box className="chosen_product_info_box">
-            <span className="shop_name">Book name: Business in 1years</span>
-            <span className="shop_name">Author: Hanry</span>
-            <span className="shop_name">Print date: 2023</span>
-            <span className="shop_name">quantaty of sold:  95</span>
-            <div className="produt_desc_bottom">
+            <span className="shop_name">
+              Book name: {chosenProduct?.product_name}
+            </span>
+            <span className="shop_name">
+              Author: {chosenProduct?.product_author}
+            </span>
+            <span className="shop_name">
+              Quantity sold: {chosenProduct?.product_sold_cnt}
+            </span>
+            <div className="product_desc_bottom">
               <div className="bottom_price">
                 <div className="pro_price_box">
-                  <span>Price:</span>
-                  <span>$11</span>
+                  <span>Price: </span>
+                  <span>{chosenProduct?.product_price} won</span>
                 </div>
                 <div className="bottom_box">
                   <Button
-                    style={{ backgroundColor: "#f0b512;" }}
+                    style={{ backgroundColor: "#f0b512" }}
                     variant="contained"
                   >
                     Add to box

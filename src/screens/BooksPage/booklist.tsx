@@ -3,7 +3,6 @@ import React, { useEffect, useRef, useState } from "react";
 import {Dispatch, createSelector } from "@reduxjs/toolkit";
 import { retrieveAllProducts } from "./selector";
 import { useDispatch, useSelector } from "react-redux";
-import assert from "assert";
 import { Product } from "../../types/product";
 import { useHistory } from "react-router-dom";
 import { AllProductsSearchObj } from "../../types/others";
@@ -36,7 +35,6 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import SwiperCore, { Autoplay, Navigation } from "swiper";
 SwiperCore.use([Autoplay, Navigation, Pagination]);
-const product_list = Array.from(Array(10).keys());
 
 
 

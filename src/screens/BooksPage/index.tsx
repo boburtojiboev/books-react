@@ -13,7 +13,7 @@ export function BooksPage() {
     <div className="books_page">
       <NavbarOther/>
       <Switch>
-        <Route path={`${books.path}/:book_id`}>
+        <Route path={`${books.path}/:product_id`}>
           <OneBook />
         </Route>
         <Route path={`${books.path}`}>

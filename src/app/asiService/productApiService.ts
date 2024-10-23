@@ -27,6 +27,24 @@ class ProductApiService {
       throw err;
     }
   }
+
+  // Assuming this method is inside ProductApiService
+  async getChosenProduct(product_id: string) {
+    try {
+      const url = `/products/${product_id}`;
+      const result = await axios.get(this.path + url, {
+        withCredentials: true,
+      });
+      assert.ok(result?.data, Definer.general_err1);
+      assert.ok(result?.data?.state !== "fail", result?.data?.message);
+      console.log("state:", result.data.state);
+      const product: Product = result.data.data;
+      return product;
+    } catch (err: any) {
+      console.log(`ERROR ::: getChosenProduct ${err.message}`);
+      throw err;
+    }
+  }
 }
 
 export default ProductApiService;
