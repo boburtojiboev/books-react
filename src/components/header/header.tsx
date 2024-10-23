@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import { NavLink, useHistory } from "react-router-dom";
 import { verifiedMemberData } from "../../app/asiService/verify";
+import { Basket } from "./basket";
 
 export function Header(props: any) {
   const history = useHistory();
@@ -61,20 +62,14 @@ export function Header(props: any) {
                 Create
               </NavLink>
             </Box>
-            <Box className="hover-line">
-              <IconButton
-                aria-label="cart"
-                id="basic-button"
-                aria-controls={undefined}
-                aria-haspopup="true"
-                aria-expanded={undefined}
-                // onClick={handleClick}
-              >
-                <Badge badgeContent={3} color="secondary">
-                  <img src={"/icons/shopping_cart.svg"} />
-                </Badge>
-              </IconButton>
-            </Box>
+            <Basket
+              cartItems={props.cartItems}
+              onAdd={props.onAdd}
+              onRemove={props.onRemove}
+              onDelete={props.onDelete}
+              onDeleteAll={props.onDeleteAll}
+              setOrderRebuild={props.setOrderRebuild}
+            />
 
             {!verifiedMemberData ? (
               <Box>

@@ -7,17 +7,17 @@ import { NavbarOther } from "../../components/header/others";
 import "../../css/books.css";
 
 
-export function BooksPage() {
+export function BooksPage(props: any) {
   let books = useRouteMatch();
   return (
     <div className="books_page">
-      <NavbarOther/>
+      <NavbarOther />
       <Switch>
         <Route path={`${books.path}/:product_id`}>
-          <OneBook />
+          <OneBook onAdd={props.onAdd} />
         </Route>
         <Route path={`${books.path}`}>
-          <AllBooks />
+          <AllBooks onAdd={props.onAdd} />
         </Route>
       </Switch>
     </div>

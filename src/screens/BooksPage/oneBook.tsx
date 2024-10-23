@@ -17,12 +17,12 @@ const chosenProductRetriever = createSelector(
   })
 );
 
-export function OneBook() {
+export function OneBook(props: any) {
   // INITIALIZATIONS
   const history = useHistory();
   const { product_id } = useParams<{ product_id: string }>();
   const { chosenProduct } = useSelector(chosenProductRetriever);
-  const dispatch = useDispatch(); // Use dispatch from Redux
+  const dispatch = useDispatch();
   const [productRebuild, setProductRebuild] = useState<Date>(new Date());
 
   const productRelatedProcess = async () => {
@@ -31,7 +31,7 @@ export function OneBook() {
       const product: Product = await productService.getChosenProduct(
         product_id
       );
-      dispatch(setChosenProduct(product)); // Dispatch the action to set the chosen product
+      dispatch(setChosenProduct(product));
     } catch (err) {
       console.log(`productRelatedProcess ERROR:`, err);
     }
@@ -40,7 +40,7 @@ export function OneBook() {
   // HANDLERS
   useEffect(() => {
     if (product_id) {
-      productRelatedProcess(); // Call the process to fetch product details
+      productRelatedProcess();
     } else {
       console.error("Product ID is undefined.");
     }
@@ -82,6 +82,9 @@ export function OneBook() {
                   <Button
                     style={{ backgroundColor: "#f0b512" }}
                     variant="contained"
+                    onClick={() => {
+                      props.onAdd(chosenProduct);
+                    }}
                   >
                     Add to box
                   </Button>
