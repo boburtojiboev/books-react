@@ -125,7 +125,7 @@ export function AllBooks(props: any) {
   return (
     <div className="single_shop">
       <Container>
-        <Stack flexDirection={"column"} alignItems={"center"}>
+        <Stack flexDirection={"column"} alignItems={"center"} style={{marginBottom: "20px"}}>
           <Stack className={"avatar_big_box"}>
             <Box className={"top_text"}>
               <h2>Book List</h2>
@@ -301,20 +301,21 @@ export function AllBooks(props: any) {
             </CssVarsProvider>
           </Stack>
           <Pagination
-            className="Pagination"
-            count={Math.ceil(
-              filteredProducts.length / allProductSearchObj.limit
-            )} // Use filteredProducts.length for pagination count
+            count={
+              allProductSearchObj.page >= 3 ? allProductSearchObj.page + 1 : 3
+            }
             page={allProductSearchObj.page}
-            onChange={handlePaginationChange}
             renderItem={(item) => (
               <PaginationItem
-                {...item}
-                sx={{
-                  border: "none",
+                components={{
+                  previous: ArrowBackIcon,
+                  next: ArrowForwardIcon,
                 }}
+                {...item}
+                color="secondary"
               />
             )}
+            onChange={handlePaginationChange}
           />
         </Stack>
       </Container>

@@ -1,3 +1,24 @@
+배포 주소:
+http://77.37.63.98:3004/
+
+백엔드는 Node.js Express.js 프레임워크로 개발되었습니다.
+MVC 구조를 사용했습니다.
+GitHub 주소:
+https://github.com/boburtojiboev/books
+백엔드는 npm으로 실행되고 있습니다.
+명령어: npm run start
+
+프론트엔드는 React와 Redux 스토어로 개발되었습니다.
+GitHub 주소:
+https://github.com/boburtojiboev/books-react
+프론트엔드는 yarn으로 실행됩니다.
+명령어: yarn
+yarn start
+
+소스 코드가 공개되어 있으니 확인해 보시기 바랍니다.
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
