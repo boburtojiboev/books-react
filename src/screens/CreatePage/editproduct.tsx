@@ -1,153 +1,171 @@
 import { Box, Button, Container, Stack, TextField } from "@mui/material";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../css/productcreation.css";
+import { CloudUpload } from "@mui/icons-material";
+import { serverApi } from "../../lib/config";
+import { useHistory, useParams } from "react-router-dom";
 
-export function ProductEdit() {
+import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
+import { Product, ProductInput } from "../../types/product";
+import ProductApiService from "../../app/asiService/productApiService";
+import { createSelector } from "@reduxjs/toolkit";
+import { retrieveEditProduct } from "./selector";
+import { setEditProduct } from "./slice";
+import assert from "assert";
+import { sweetErrorHandling, sweetTopSmallSuccessAlert } from "../../lib/sweetAlert";
+import { Definer } from "../../lib/Definer";
+
+// REDUX SELECTOR
+const editProductRetriever = createSelector(
+  retrieveEditProduct,
+  (editProduct) => ({
+    editProduct,
+  })
+);
+
+export function ProductEdit(props: any) {
   /** INITIALIZATIONS **/
-  const [product, setProduct] = useState({
-    name: "",
-    price: "",
-    description: "",
-    image: "",
+  const { product_id } = useParams<{ product_id: string }>();
+  const { editProduct } = useSelector(editProductRetriever);
+  const dispatch = useDispatch();
+  const [productRebuild, setProductRebuild] = useState<Date>(new Date());
+  const [file, setFile] = useState(editProduct?.product_images[0] || "");
+
+  const productRelatedProcess = async () => {
+    try {
+      const productService = new ProductApiService();
+      const product: Product = await productService.getChosenProduct(
+        product_id
+      );
+      dispatch(setEditProduct(product));
+    } catch (err) {
+      console.log(`productRelatedProcess ERROR:`, err);
+    }
+  };
+
+  const [productUpdate, setProductUpdate] = useState<ProductInput>({
+    product_name: "",
+    product_author: "",
+    product_price: 0,
+    product_cnt: 0,
   });
 
-  const [imagePreview, setImagePreview] = useState("");
-
-  /** HANDLERS **/
-  const handleChange = (e: any) => {
-    const { name, value } = e.target;
-    setProduct({ ...product, [name]: value });
+  //** HANDLERS**//
+    useEffect(() => {
+      if (product_id) {
+        productRelatedProcess();
+      } else {
+        console.error("Product ID is undefined.", product_id);
+      }
+    }, [product_id, productRebuild]);
+  const changeProductNameHandler = (e: any) => {
+    productUpdate.product_name = e.target.value;
+    setProductUpdate({ ...productUpdate });
   };
 
-  const handleImageUpload = (e: any) => {
-    const file = e.target.files[0];
-    setProduct({ ...product, image: file });
-    setImagePreview(URL.createObjectURL(file));
+  const changeProductAuthorHandler = (e: any) => {
+    productUpdate.product_author = e.target.value;
+    setProductUpdate({ ...productUpdate });
   };
 
-  const handleSubmit = () => {
-    console.log("Product Data:", product); // For now, just log the product data
-    alert("Product Submitted (Check console for details)");
-  };
+   const changeProductPriceHandler = (e: any) => {
+     productUpdate.product_price = e.target.value;
+     setProductUpdate({ ...productUpdate });
+   };
+
+   const changeProductCntHandler = (e: any) => {
+     productUpdate.product_cnt = e.target.value;
+     setProductUpdate({ ...productUpdate });
+   };
+
+    const handleSubmitButton = async () => {
+      try {
+        const productService = new ProductApiService();
+        console.log("productUpdate:", productUpdate);
+
+        // Pass product_id as the second argument
+        const result = await productService.updateProductData(
+          productUpdate,
+          product_id
+        );
+
+        assert.ok(result, Definer.general_err1);
+        await sweetTopSmallSuccessAlert(
+          "Information modified successfully",
+          700,
+          false
+        );
+        window.location.reload();
+      } catch (err) {
+        console.log(`ERROR::: handleSubmitButton ${err}`);
+        sweetErrorHandling(err).then();
+      }
+    };
+
+    console.log("log:", product_id);
 
   return (
     <Container style={{ display: "flex" }}>
       <Stack className="product_creation_page">
-      
+        {/* Image Upload Section */}
+        <h1>Update product</h1>
+        
 
         <Box className="productss_right">
-          {/* Product Name Input */}
           <Box className="input_frame">
             <label>Book title:</label>
             <input
               type="text"
-              name="title"
-              value={product.name}
-              onChange={handleChange}
-              placeholder="Enter book title"
+              name="product_name"
+              placeholder={editProduct?.product_name}
+              onChange={changeProductNameHandler}
               className="input"
-              style={{
-                width: "100%",
-                padding: "10px",
-                borderRadius: "4px",
-                border: "1px solid #ccc",
-              }}
             />
           </Box>
           <Box className="input_frame">
             <label>Book author:</label>
             <input
               type="text"
-              name="author"
-              value={product.name}
-              onChange={handleChange}
-              placeholder="Enter author name"
+              onChange={changeProductAuthorHandler}
+              placeholder={editProduct?.product_author}
               className="input"
-              style={{
-                width: "100%",
-                padding: "10px",
-                borderRadius: "4px",
-                border: "1px solid #ccc",
-              }}
             />
           </Box>
           <Box className="input_frame">
-            <label>Print date:</label>
+            <label>Number of Book:</label>
             <input
               type="number"
-              name="print data"
-              value={product.name}
-              onChange={handleChange}
-              placeholder="Enter published date"
+              name="product_cnt"
+              onChange={changeProductCntHandler}
+              placeholder={
+                editProduct?.product_cnt !== undefined
+                  ? String(editProduct.product_cnt)
+                  : ""
+              }
               className="input"
-              style={{
-                width: "100%",
-                padding: "10px",
-                borderRadius: "4px",
-                border: "1px solid #ccc",
-              }}
             />
           </Box>
           <Box className="input_frame">
-            <label>Amount:</label>
+            <label>Product Price:</label>
             <input
               type="number"
-              name="amount"
-              value={product.name}
-              onChange={handleChange}
-              placeholder="Enter book abount"
+              name="product_price"
+              onChange={changeProductPriceHandler}
+              placeholder={
+                editProduct?.product_price !== undefined
+                  ? String(editProduct.product_price)
+                  : ""
+              }
               className="input"
-              style={{
-                width: "100%",
-                padding: "10px",
-                borderRadius: "4px",
-                border: "1px solid #ccc",
-              }}
-            />
-          </Box>
-
-          {/* Product Price Input */}
-          <Box className="input_frame">
-            <label>Price:</label>
-            <input
-              type="number"
-              name="price"
-              value={product.price}
-              onChange={handleChange}
-              placeholder="Enter book price"
-              className="input"
-              style={{
-                width: "100%",
-                padding: "10px",
-                borderRadius: "4px",
-                border: "1px solid #ccc",
-              }}
-            />
-          </Box>
-
-          {/* Product Description Input */}
-          <Box className="input_frame">
-            <label>Description</label>
-            <textarea
-              name="description"
-              value={product.description}
-              onChange={handleChange}
-              placeholder="Enter product description"
-              rows={3}
-              className="textarea"
-              style={{
-                width: "100%",
-                padding: "10px",
-                borderRadius: "4px",
-                border: "1px solid #ccc",
-              }}
             />
           </Box>
         </Box>
+
         {/* Submit Button */}
         <Box display="flex" justifyContent={"flex-end"} sx={{ mt: "25px" }}>
-          <Button variant="contained" onClick={handleSubmit}>
-            Create Product
+          <Button variant="contained" onClick={handleSubmitButton}>
+            Save
           </Button>
         </Box>
       </Stack>

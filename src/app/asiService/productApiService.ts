@@ -3,7 +3,7 @@ import { serverApi } from "../../lib/config";
 import { Definer } from "../../lib/Definer";
 import { AllProductsSearchObj } from "../../types/others";
 import axios from "axios";
-import { Product } from "../../types/product";
+import { Product, ProductInput } from "../../types/product";
 
 class ProductApiService {
   private readonly path: string;
@@ -62,18 +62,35 @@ class ProductApiService {
     }
   }
 
-  async editProduct(product_id: string, productData: any) {
+  public async updateProductData(data: ProductInput, productId: string) {
     try {
-      const url = `/edit/${product_id}`;
-      const result = await axios.put(this.path + url, productData, {
+      // Prepare the product update object as JSON
+      const productData = {
+        product_name: data.product_name || "",
+        product_author: data.product_author || "",
+        product_price: data.product_price || 0,
+        product_cnt: data.product_cnt || 0,
+      };
+
+      // Use template literal to insert productId
+      const result = await axios(`${this.path}/edit/${productId}`, {
+        method: "POST",
+        data: JSON.stringify(productData), // Send data as JSON
         withCredentials: true,
+        headers: {
+          "Content-Type": "application/json", // Set the content type to application/json
+        },
       });
+
       assert.ok(result?.data, Definer.general_err1);
       assert.ok(result?.data?.state !== "fail", result?.data?.message);
-      console.log("Product updated:", result.data.message);
-      return result.data; // Return the result if needed
+      console.log("state:", result.data.data);
+
+      const product: Product = result.data.data;
+      localStorage.setItem("member_data", JSON.stringify(product));
+      return product;
     } catch (err: any) {
-      console.log(`ERROR ::: editProduct ${err.message}`);
+      console.log(`error:: memberLikeTarget ${err.message}`);
       throw err;
     }
   }

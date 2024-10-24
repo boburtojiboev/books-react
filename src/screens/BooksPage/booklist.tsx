@@ -88,6 +88,10 @@ export function AllBooks(props: any) {
     history.push(`/books/${id}`);
   };
 
+   const editChosenProductHandler = (id: string) => {
+     history.push(`/create/${id}`);
+   };
+
   const handlePaginationChange = (event: any, value: number) => {
     allProductSearchObj.page = value;
     setAllProductSearchObj({ ...allProductSearchObj });
@@ -252,6 +256,10 @@ export function AllBooks(props: any) {
                           transform: "translateY(50%)",
                           color: "rgba(0,0,0,.2)",
                         }}
+                        onClick={(e) => {
+                          editChosenProductHandler(product._id);
+                          e.stopPropagation();
+                        }}
                       >
                         <EditIcon style={{ color: "white" }} />
                       </IconButton>
@@ -270,7 +278,7 @@ export function AllBooks(props: any) {
                           transform: "translateY(50%)",
                           color: "rgba(0,0,0,.2)",
                         }}
-                         onClick={(e) => {
+                        onClick={(e) => {
                           props.onAdd(product);
                           e.stopPropagation();
                         }}
@@ -281,10 +289,7 @@ export function AllBooks(props: any) {
                     <Typography fontWeight="lg" sx={{ mt: 2 }}>
                       {product.product_name}
                     </Typography>
-                    <Typography
-                     
-                      sx={{ mb: 1, color: "text.tertiary" }}
-                    >
+                    <Typography sx={{ mb: 1, color: "text.tertiary" }}>
                       {product.product_author}
                     </Typography>
                     <Typography fontWeight="lg">

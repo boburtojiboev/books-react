@@ -10,3 +10,10 @@ export interface Product {
     createdAt: Date;
     updatedAt: Date;
   }
+
+  export interface ProductInput {
+    product_name: string;
+    product_author: string;
+    product_price: number;
+    product_cnt: number;
+  }
