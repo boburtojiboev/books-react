@@ -88,7 +88,11 @@ export function Header(props: any) {
             ) : (
               <img
                 style={{ width: "48px", height: "48px", borderRadius: "24px" }}
-                src={verifiedMemberData.mb_image}
+                src={
+                  verifiedMemberData.mb_image
+                    ? verifiedMemberData.mb_image
+                    : "/auth/default_user.svg"
+                }
                 alt="member_img"
                 onClick={props.handleLogOutClick}
               />
