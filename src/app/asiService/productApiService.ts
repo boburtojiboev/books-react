@@ -45,6 +45,38 @@ class ProductApiService {
       throw err;
     }
   }
+
+  async deleteProduct(product_id: string) {
+    try {
+      const url = `/delete/${product_id}`;
+      const result = await axios.delete(this.path + url, {
+        withCredentials: true,
+      });
+      assert.ok(result?.data, Definer.general_err1);
+      assert.ok(result?.data?.state !== "fail", result?.data?.message);
+      console.log("Product deleted:", result.data.message);
+      return result.data; // Return the result if needed
+    } catch (err: any) {
+      console.log(`ERROR ::: deleteProduct ${err.message}`);
+      throw err;
+    }
+  }
+
+  async editProduct(product_id: string, productData: any) {
+    try {
+      const url = `/edit/${product_id}`;
+      const result = await axios.put(this.path + url, productData, {
+        withCredentials: true,
+      });
+      assert.ok(result?.data, Definer.general_err1);
+      assert.ok(result?.data?.state !== "fail", result?.data?.message);
+      console.log("Product updated:", result.data.message);
+      return result.data; // Return the result if needed
+    } catch (err: any) {
+      console.log(`ERROR ::: editProduct ${err.message}`);
+      throw err;
+    }
+  }
 }
 
 export default ProductApiService;

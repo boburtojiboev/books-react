@@ -1,4 +1,3 @@
-import { CloudUpload } from "@mui/icons-material";
 import { Box, Button, Container, Stack, TextField } from "@mui/material";
 import { useState } from "react";
 import "../../css/productcreation.css";
@@ -34,32 +33,7 @@ export function ProductEdit() {
   return (
     <Container style={{ display: "flex" }}>
       <Stack className="product_creation_page">
-        {/* Image Upload Section */}
-        {/* <Box className="product_media_frame">
-          <img
-            src={imagePreview || "/img/book.png"}
-            alt="Product"
-            className="product_image"
-            width={"100px"}
-            height={"100px"}
-            style={{ borderRadius: "10%" }}
-          />
-          <div className="media_change_box">
-            <span>Upload Product Image</span>
-            <p>You can only upload JPG, JPEG, PNG formats!</p>
-            <Button
-              component="label"
-              style={{
-                width: "100px",
-                height: "100px",
-                backgroundColor: "yellowgreen",
-              }}
-            >
-              <CloudUpload />
-              <input type="file" hidden onChange={handleImageUpload} />
-            </Button>
-          </div>
-        </Box> */}
+      
 
         <Box className="productss_right">
           {/* Product Name Input */}

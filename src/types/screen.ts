@@ -4,6 +4,7 @@ import { Product } from "./product";
 // REACT APP STATE//
 export interface AppRootState {
   productPage: ProductPageState;
+  createPage: CreatePageState;
 }
 
 // Product PAGE//
@@ -13,7 +14,7 @@ export interface ProductPageState {
 }
 
 // Creation PAGE//
-// export interface CreationPageState {
-//   creationProduct: Product;
-//   editProduct: Product;
-// }
+export interface CreatePageState {
+  createProduct: Product | null;
+  editProduct: Product | null;
+}
