@@ -7,7 +7,7 @@
 # yarn global add serve
 # yarn
 # yarn run build
-pm2 start "npm run start" --name=ROIP-Frontend
+pm2 start "npm run start" --name=Books-Frontend
 
 # DEVELOPMENT
 # npm i yarn -g
