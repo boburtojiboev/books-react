@@ -51,6 +51,18 @@ export function ProductEdit(props: any) {
     product_cnt: 0,
   });
 
+  useEffect(() => {
+    if (editProduct) {
+      setProductUpdate({
+        product_name: editProduct.product_name || "",
+        product_author: editProduct.product_author || "",
+        product_price: editProduct.product_price || 0,
+        product_cnt: editProduct.product_cnt || 0,
+      });
+    }
+  }, [editProduct]);
+
+
   //** HANDLERS**//
     useEffect(() => {
       if (product_id) {
@@ -110,7 +122,6 @@ export function ProductEdit(props: any) {
       <Stack className="product_creation_page">
         {/* Image Upload Section */}
         <h1>Update product</h1>
-        
 
         <Box className="productss_right">
           <Box className="input_frame">
@@ -118,7 +129,7 @@ export function ProductEdit(props: any) {
             <input
               type="text"
               name="product_name"
-              placeholder={editProduct?.product_name}
+              value={productUpdate?.product_name}
               onChange={changeProductNameHandler}
               className="input"
             />
@@ -128,7 +139,7 @@ export function ProductEdit(props: any) {
             <input
               type="text"
               onChange={changeProductAuthorHandler}
-              placeholder={editProduct?.product_author}
+              value={productUpdate?.product_author}
               className="input"
             />
           </Box>
@@ -138,9 +149,9 @@ export function ProductEdit(props: any) {
               type="number"
               name="product_cnt"
               onChange={changeProductCntHandler}
-              placeholder={
-                editProduct?.product_cnt !== undefined
-                  ? String(editProduct.product_cnt)
+              value={
+                productUpdate?.product_cnt !== undefined
+                  ? String(productUpdate.product_cnt)
                   : ""
               }
               className="input"
@@ -152,9 +163,9 @@ export function ProductEdit(props: any) {
               type="number"
               name="product_price"
               onChange={changeProductPriceHandler}
-              placeholder={
-                editProduct?.product_price !== undefined
-                  ? String(editProduct.product_price)
+              value={
+                productUpdate?.product_price !== undefined
+                  ? String(productUpdate.product_price)
                   : ""
               }
               className="input"

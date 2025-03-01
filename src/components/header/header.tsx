@@ -38,7 +38,7 @@ export function Header(props: any) {
                 cursor: "pointer",
               }}
             >
-              <span style={{ color: "#2ec3da" }}>Books</span>Shop
+              <span style={{ color: "#e3cb8e" }}>Books</span>Store
             </h1>
           </Stack>
           <Stack
@@ -78,7 +78,7 @@ export function Header(props: any) {
                   style={{
                     width: "100px",
                     color: "#ffffff",
-                    background: "#0383a3",
+                    background: "#e3cb8e",
                   }}
                   onClick={props.handleLoginOpen}
                 >
@@ -146,7 +146,7 @@ export function Header(props: any) {
                   style={{
                     width: "100px",
                     color: "#ffffff",
-                    background: "#0383a3",
+                    background: "#e3cb8e",
                   }}
                   onClick={props.handleSignupOpen}
                 >
